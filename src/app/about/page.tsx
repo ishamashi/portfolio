@@ -3,7 +3,7 @@ export default function AboutPage() {
   const skills = ["HTML5", "CSS3", "JavaScript", "PHP", "Python", "React", "Node.js", "MySQL", "PostgreSQL", "Tailwind CSS", "Git", "Visual Studio Code", "Linux", "Docker", "AWS (Dasar)"]; // Daftar lengkap
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="mb-10 text-center text-4xl font-bold tracking-tight sm:text-5xl">// Tentang Saya: Icho Ishamashi</h1>
+      <h1 className="mb-10 text-center text-4xl font-bold tracking-tight sm:text-5xl">&sol;&sol; Tentang Saya: Icho Ishamashi</h1>
       <div className="mx-auto max-w-3xl space-y-6 text-left text-foreground/80">
         {" "}
         {/* Ubah ke text-left untuk bacaan panjang */}

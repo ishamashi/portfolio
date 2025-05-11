@@ -8,7 +8,7 @@
 export default function ProjectsPage() {
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl">// Semua Proyek Saya</h1>
+      <h1 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl">&sol;&sol; Semua Proyek Saya</h1>
       <p className="text-center text-foreground/80">
         Halaman ini akan menampilkan daftar lengkap semua proyek yang pernah saya kerjakan atau sedang saya kembangkan.
         {/*

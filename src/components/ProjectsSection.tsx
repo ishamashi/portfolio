@@ -30,7 +30,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects-summary" className="py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">// Featured Forgings from the Digital Anvil</h2>
+        <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">&sol;&sol; Featured Forgings from the Digital Anvil</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />

@@ -25,8 +25,8 @@ const NidavellirAnimation: React.FC = () => {
         const P5 = p5Module.default; // P5 constructor
 
         const sketch = (p: p5Types) => {
-          let particles: Particle[] = [];
-          let texts: FloatingText[] = [];
+          const particles: Particle[] = [];
+          const texts: FloatingText[] = [];
           let lastTextSpawnTime = 0;
           const textSpawnInterval = 2500; // ms
 
@@ -168,7 +168,7 @@ const NidavellirAnimation: React.FC = () => {
             update() {
               this.pos.add(this.vel);
               this.lifespan -= 2;
-              let force = P5.Vector.sub(this.target, this.pos);
+              const force = P5.Vector.sub(this.target, this.pos);
               force.setMag(0.1);
               this.vel.add(force);
               this.vel.limit(4);

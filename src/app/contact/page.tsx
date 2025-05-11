@@ -2,7 +2,7 @@
 export default function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="mb-10 text-center text-4xl font-bold tracking-tight sm:text-5xl">return "Mari Berdiskusi";</h1>
+      <h1 className="mb-10 text-center text-4xl font-bold tracking-tight sm:text-5xl">return &quot;Mari Berdiskusi&quot;;</h1>
       <div className="mx-auto max-w-xl text-center">
         <p className="mb-8 text-foreground/80 text-lg">Saya sangat senang jika bisa berdiskusi lebih lanjut mengenai proyek potensial, peluang kolaborasi, atau sekadar bertukar pikiran tentang teknologi. Silakan hubungi saya melalui salah satu cara di bawah ini.</p>
 
