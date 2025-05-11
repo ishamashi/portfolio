@@ -59,6 +59,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-surface: var(--surface); /* Untuk latar belakang elemen seperti kartu, navbar */
   --color-border: var(--border); /* Untuk border elemen */
+  --color-border-rune: var(--color-red-500); /* Default warna rune untuk border */
 
   /* -- Tipografi -- */
   --font-sans: var(--font-family-sans);
@@ -208,7 +209,72 @@ h6 {
   opacity: 1;
 }
 
-/* Tambahan: Glow pada teks saat hover (opsional, bisa jadi terlalu banyak) */
 .nav-link-runic:hover {
   text-shadow: 0 0 5px color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+
+.about-section-runic-frame {
+  position: relative;
+  padding: 2.5rem 1.5rem; /* Padding internal untuk memberi ruang pada 'bingkai rune' */
+  background-color: var(--color-surface); /* Latar belakang section */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Penting agar pseudo-elemen tidak keluar */
+}
+
+/* Pseudo-elemen untuk bingkai rune atas dan bawah */
+.about-section-runic-frame::before,
+.about-section-runic-frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px; /* Sama dengan tinggi SVG rune pattern */
+  color: var(--color-border-rune);
+  background-image: url("/textures/runic-border-pattern.svg");
+  background-repeat: repeat-x; /* Ulangi secara horizontal */
+  background-size: auto 100%; /* Sesuaikan tinggi SVG dengan pseudo-elemen */
+  opacity: 0.4; /* Buat lebih subtil */
+  pointer-events: none; /* Agar tidak mengganggu interaksi */
+  /* Bisa ditambahkan filter seperti 'sepia' atau 'grayscale' jika ingin efek lebih kuno */
+}
+
+.about-section-runic-frame::before {
+  top: 0px; /* Jarak dari atas */
+}
+
+.about-section-runic-frame::after {
+  bottom: 0px; /* Jarak dari bawah */
+  transform: scaleY(-1);
+}
+
+.about-title-runestone {
+  position: relative;
+  padding-bottom: 1rem;
+  color: var(--color-foreground);
+  text-shadow: 1px 1px 1px var(--color-background); /* Efek timbul halus */
+}
+
+/* Aksen garis yang 'mengalir' ke judul */
+.about-title-runestone::before,
+.about-title-runestone::after {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Di bawah padding-bottom */
+  height: 2px;
+  width: 30%; /* Lebar aksen garis */
+  max-width: 60px; /* Batas maksimal lebar */
+  background-color: var(--color-accent);
+  opacity: 0.7;
+  filter: drop-shadow(0 0 3px var(--color-accent)); /* Efek glow halus */
+}
+
+.about-title-runestone::before {
+  left: 50%;
+  transform: translateX(calc(-100% - 15px)); /* Kiri dari tengah */
+}
+
+.about-title-runestone::after {
+  right: 50%;
+  transform: translateX(calc(100% + 15px)); /* Kanan dari tengah */
 }

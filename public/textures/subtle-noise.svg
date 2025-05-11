@@ -6,6 +6,5 @@
       numOctaves='3' 
       stitchTiles='stitch'/>
   </filter>
-  <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.925'/> 
-  {/* Opacity sangat rendah! Sesuaikan baseFrequency & numOctaves */}
+  <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.125'/> 
 </svg>

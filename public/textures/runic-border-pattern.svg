@@ -1,0 +1,21 @@
+<!-- public/textures/runic-border-pattern.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="20" viewBox="0 0 150 30">
+  <defs>
+    <style>
+      .rune { 
+        font-family: 'JetBrains Mono', 'आपका Fallback Rune Font jika ada', sans-serif; 
+        font-size: 24px; 
+        fill: rgb(96, 165, 250); 
+        opacity: 1;
+      }
+    </style>
+  </defs>
+  <!-- Ansuz, Kenaz, Dagaz, dengan sedikit spasi dan mungkin simbol pemisah kecil -->
+  <text x="10" y="22" class="rune">ᚨ</text> 
+  <text x="35" y="22" class="rune">ᚲ</text>
+  <text x="60" y="22" class="rune">ᛞ</text>
+  <!-- Ulangi atau tambahkan variasi jika perlu untuk panjang 150px -->
+  <text x="85" y="22" class="rune">᛫</text> <!-- Titik pemisah -->
+  <text x="100" y="22" class="rune">ᚨ</text>
+  <text x="125" y="22" class="rune">ᚲ</text>
+</svg>
