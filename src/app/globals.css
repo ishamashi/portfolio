@@ -1,26 +1,214 @@
+/* app/globals.css */
+/* 2. Impor Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap");
+
+/* 1. Impor Tailwind CSS (menggantikan @tailwind base, components, utilities) */
 @import "tailwindcss";
 
+/* 3. Definisi Variabel CSS Kustom di :root */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* -- Font Stacks -- */
+  /* Variabel ini akan kita gunakan untuk menunjuk ke font yang diimpor */
+  --font-family-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* -- Warna Tema (Light Mode sebagai Default) -- */
+  /* Variabel ini akan berubah berdasarkan skema warna */
+  --background-rgb: 255, 255, 255; /* Untuk bg-opacity, putih */
+  --foreground-rgb: 23, 23, 23; /* Untuk text-opacity, netral-900 / #171717 */
+
+  --background: rgb(var(--background-rgb));
+  --foreground: rgb(var(--foreground-rgb));
+
+  /* Warna Akѕen dan Permukaan Tambahan (Light Mode) */
+  --accent-rgb: 59, 130, 246; /* biru-500 / #3B82F6 */
+  --accent-hover-rgb: 37, 99, 235; /* biru-600 / #2563EB */
+  --surface-rgb: 243, 244, 246; /* abu-abu-100 / #f3f4f6 (untuk kartu, navbar bg di light mode) */
+  --border-rgb: 229, 231, 235; /* abu-abu-200 / #e5e7eb (untuk border kartu) */
+
+  --accent: rgb(var(--accent-rgb));
+  --accent-hover: rgb(var(--accent-hover-rgb));
+  --surface: rgb(var(--surface-rgb));
+  --border: rgb(var(--border-rgb));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* 4. Override Variabel CSS untuk Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background-rgb: 10, 10, 10; /* Hitam pekat / #0a0a0a */
+    --foreground-rgb: 237, 237, 237; /* Putih keabuan / #ededed */
+
+    /* Warna Akѕen dan Permukaan Tambahan (Dark Mode) */
+    --accent-rgb: 96, 165, 250; /* biru-400 / #60A5FA */
+    --accent-hover-rgb: 59, 130, 246; /* biru-500 / #3B82F6 */
+    --surface-rgb: 31, 41, 55; /* abu-abu-800 / #1f2937 (untuk kartu, navbar bg di dark mode) */
+    --border-rgb: 55, 65, 81; /* abu-abu-700 / #374151 (untuk border kartu) */
   }
 }
 
+/* 5. Konfigurasi Tema Inline Tailwind CSS */
+/* Variabel ini akan diekspos ke sistem tema Tailwind,
+   memungkinkan penggunaan kelas seperti `bg-background`, `text-foreground`, `font-sans`, dll. */
+@theme inline {
+  /* -- Warna Inti -- */
+  --color-background: var(--background); /* Akan mengambil nilai dari :root yang sesuai dengan mode */
+  --color-foreground: var(--foreground); /* Akan mengambil nilai dari :root yang sesuai dengan mode */
+
+  /* -- Warna Semantik Tambahan -- */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-surface: var(--surface); /* Untuk latar belakang elemen seperti kartu, navbar */
+  --color-border: var(--border); /* Untuk border elemen */
+
+  /* -- Tipografi -- */
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
+  --subtle-texture: url("/textures/subtle-noise.svg"); /* Pastikan path benar */
+  /* Anda bisa menambahkan konfigurasi tema lain di sini jika perlu,
+     misalnya spacing, borderRadius, dll., menggunakan sintaks --nama-key: nilai */
+}
+
+/* 6. Gaya Dasar Global Menggunakan Kelas Utilitas Tailwind (atau @apply) */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Tambahkan ini untuk tekstur latar */
+  /* background-image: var(--subtle-texture);
+  /* background-blend-mode: overlay; /* Eksperimen: overlay, multiply, screen */
+  /* Jika --background adalah warna solid gelap, overlay/screen mungkin lebih baik */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-mono text-foreground; /* Atau warna spesifik jika diperlukan */
+}
+
+/* 7. Keyframes dan Animasi Kustom */
+/* Dapat menggunakan variabel CSS yang sudah di-theme, seperti var(--accent) */
+@keyframes typing {
+  0% {
+    width: 0%;
+    visibility: hidden;
+  }
+  30% {
+    width: 0%;
+    visibility: visible;
+  } /* Jeda sebelum mulai mengetik */
+  100% {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent);
+  } /* Menggunakan warna aksen dari tema */
+}
+
+.animation-text-typing {
+  display: inline-block; /* atau block */
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid var(--accent); /* Gaya kursor menggunakan warna aksen tema */
+  animation: typing 3.5s steps(30, end), /* Hapus 'forwards' jika ingin animasi berulang */ blink-caret 0.75s step-end infinite;
+}
+
+/* Opsional: Custom container jika diperlukan (meskipun Tailwind punya 'container') */
+.container-custom {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Styling Scrollbar Kustom (Webkit browsers) */
+::-webkit-scrollbar {
+  width: 10px; /* Lebar scrollbar */
+  height: 10px; /* Tinggi untuk scrollbar horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--surface) 70%, transparent); /* Warna track sedikit lebih gelap/transparan dari surface */
+  border-radius: 0px; /* Buat lebih kotak, seperti batu */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border); /* Warna thumb seperti border atau batu lebih terang */
+  border-radius: 0px; /* Kotak */
+  border: 2px solid color-mix(in srgb, var(--surface) 70%, transparent); /* Border untuk thumb, memberi efek 'inset' */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent); /* Warna accent saat hover */
+  border-color: var(--color-accent);
+}
+
+* {
+  scrollbar-width: thin; /* Bisa 'auto', 'thin', atau 'none' */
+  scrollbar-color: var(--color-border) color-mix(in srgb, var(--surface) 70%, transparent); /* thumb-color track-color */
+}
+
+/* Tambahkan kelas khusus atau styling inline pada Link nama Anda di Navbar.tsx */
+.brand-name-engraved {
+  /* font-family: 'Sebuah font display Nordik yang sangat terbaca jika ada'; */
+  color: color-mix(in srgb, var(--foreground) 70%, var(--surface)); /* Warna teks sedikit lebih gelap dari foreground biasa */
+  text-shadow: 1px 1px 0px color-mix(in srgb, var(--background) 50%, black), /* Bayangan gelap bawah-kanan */ -1px -1px 0px color-mix(in srgb, var(--surface) 120%, white); /* Highlight terang atas-kiri (simulasi cahaya) */
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+.brand-name-engraved:hover {
+  color: var(--color-accent);
+  text-shadow: 1px 1px 0px color-mix(in srgb, var(--color-accent) 30%, black), 0 0 10px color-mix(in srgb, var(--color-accent) 40%, transparent); /* Glow pada hover */
+}
+
+.navbar-forged-edge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px; /* Ketebalan garis atas */
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent) 20%, color-mix(in srgb, var(--color-accent) 60%, var(--foreground)) 50%, /* Titik tengah sedikit berbeda */ var(--color-accent) 80%, transparent 100%);
+  opacity: 0.6; /* Jangan terlalu terang */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Bayangan halus di bawah garis */
+}
+
+.nav-link-runic {
+  position: relative;
+  padding: 0.5rem 0; /* Beri sedikit padding agar glow tidak terpotong */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Transisi warna teks sudah ada */
+}
+
+.nav-link-runic::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0; /* Posisi di bawah teks */
+  width: 0%; /* Mulai dari lebar 0 */
+  height: 1px; /* Ketebalan underline */
+  background-color: var(--color-accent);
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: width 0.4s ease, opacity 0.4s ease;
+  box-shadow: 0 0 8px 0px color-mix(in srgb, var(--color-accent) 70%, transparent); /* Glow awal */
+}
+
+.nav-link-runic:hover::after,
+.nav-link-runic:focus-visible::after {
+  width: 110%; /* Sedikit lebih lebar dari teks */
+  opacity: 1;
+}
+
+/* Tambahan: Glow pada teks saat hover (opsional, bisa jadi terlalu banyak) */
+.nav-link-runic:hover {
+  text-shadow: 0 0 5px color-mix(in srgb, var(--color-accent) 50%, transparent);
 }
