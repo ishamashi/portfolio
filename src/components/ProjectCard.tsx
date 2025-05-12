@@ -1,6 +1,9 @@
 // components/ProjectCard.tsx
 import Image from "next/image"; // Jika Anda akan menggunakan gambar nyata
 
+import RuneDagazIcon from "@/icons/RuneDagazIcon"; // Impor ikon
+import RuneKenazIcon from "@/icons/RuneKenazIcon"; // Impor ikon
+
 // Definisikan tipe untuk props proyek
 export interface Project {
   id: string | number;
@@ -20,7 +23,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="flex flex-col overflow-hidden rounded-lg border border-border bg-surface shadow-lg transition-all hover:shadow-xl hover:border-accent/50 group">
-      <div className="relative h-48 w-full bg-background flex items-center justify-center overflow-hidden">
+      <div className="project-image-container relative h-48 w-full bg-background flex items-center justify-center overflow-hidden">
         {/* Efek hover pada gambar/placeholder */}
         <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
           {project.imageUrl ? (
@@ -39,21 +42,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <p className="text-xs font-mono text-foreground/60 mb-1">Forged with:</p>
           <div className="mb-3 flex flex-wrap gap-1">
             {project.techStack.map((tech) => (
-              <span key={tech} className="inline-block rounded-full bg-background px-2 py-0.5 text-xs font-medium text-accent/80 border border-border">
+              <span key={tech} className="skill-badge-etched inline-block rounded-md bg-background px-2 py-0.5 text-xs font-medium text-accent/80 border border-border">
                 {tech}
               </span>
             ))}
           </div>
         </div>
-        <div className="mt-4 flex space-x-3">
+        <div className="mt-4 flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-3">
           {project.liveLink && (
-            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-accent hover:text-accent-hover hover:underline">
-              View Artifact {/* Atau Explore Realm */}
+            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-x-1.5 text-sm font-medium text-accent hover:text-accent-hover hover:underline group/link">
+              <RuneDagazIcon className="h-3.5 w-3.5 text-accent transition-transform duration-300 group-hover/link:rotate-[45deg] group-hover/link:text-accent-hover" aria-hidden="true" />
+              View Artifact
             </a>
           )}
           {project.sourceLink && (
-            <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-accent hover:text-accent-hover hover:underline">
-              Inspect Runes {/* Atau View Blueprint */}
+            <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-x-1.5 text-sm font-medium text-accent hover:text-accent-hover hover:underline group/link">
+              <RuneKenazIcon className="h-3.5 w-3.5 text-accent transition-transform duration-300 group-hover/link:-rotate-[45deg] group-hover/link:text-accent-hover" aria-hidden="true" />
+              Inspect Runes
             </a>
           )}
         </div>

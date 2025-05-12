@@ -2,6 +2,8 @@
 import Link from "next/link";
 import ProjectCard, { Project } from "./ProjectCard"; // Impor ProjectCard dan tipe Project
 
+import RuneOthalaIcon from "@/icons/RuneOthalaIcon"; // Impor ikon
+
 // Anda akan mengisi ini dengan data proyek Anda
 // Untuk homepage, kita hanya tampilkan beberapa
 const featuredProjects: Project[] = [
@@ -37,7 +39,8 @@ const ProjectsSection = () => {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Link href="/projects" className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-8 text-sm font-medium text-white shadow transition-colors hover:bg-accent-hover">
+          <Link href="/projects" className="inline-flex items-center justify-center gap-x-2.5 h-12 px-8 rounded-md border-2 border-accent bg-transparent text-base font-semibold text-accent shadow-lg transition-all duration-300 ease-out hover:bg-accent hover:text-white hover:shadow-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface group">
+            <RuneOthalaIcon className="h-5 w-5 text-accent transition-transform duration-500 ease-in-out group-hover:text-white group-hover:scale-110 group-hover:rotate-[180deg]" aria-hidden="true" />
             Browse All Artifacts
           </Link>
         </div>

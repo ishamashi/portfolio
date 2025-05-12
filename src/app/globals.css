@@ -248,33 +248,44 @@ h6 {
   transform: scaleY(-1);
 }
 
-.about-title-runestone {
+.skill-badge-etched {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out, box-shadow 0.3s ease;
+  cursor: default;
+  text-shadow: 1px 1px 0px var(--color-background); /* Memberi kesan terukir */
+}
+
+.skill-badge-etched:hover {
+  background-color: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent) 10%); /* Latar sedikit berwarna aksen */
+  border-color: var(--color-accent);
+  color: color-mix(in srgb, var(--color-accent) 150%, white); /* Teks lebih terang */
+  transform: scale(1.05); /* Sedikit membesar */
+  /* Glow 'dari dalam' dengan inset shadow dan drop shadow biasa */
+  box-shadow: inset 0 0 5px 0px color-mix(in srgb, var(--color-accent) 30%, transparent), 0 3px 8px -1px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+/* Sudah ada di ProjectCard, pastikan grupnya ada */
+/* .flex.flex-col.overflow-hidden.rounded-lg.border.border-border.bg-surface.shadow-lg.transition-all.hover:shadow-xl.hover:border-accent/50.group */
+
+/* Tambahkan atau modifikasi style hover pada elemen di dalam kartu */
+/* Misalnya, pada gambar atau area placeholder */
+.project-image-container {
+  /* Berikan kelas ini pada div pembungkus gambar/placeholder di ProjectCard */
   position: relative;
-  padding-bottom: 1rem;
-  color: var(--color-foreground);
-  text-shadow: 1px 1px 1px var(--color-background); /* Efek timbul halus */
+  overflow: hidden; /* Penting untuk glow agar tidak keluar */
 }
 
-/* Aksen garis yang 'mengalir' ke judul */
-.about-title-runestone::before,
-.about-title-runestone::after {
-  content: '';
+.project-image-container::after {
+  content: "";
   position: absolute;
-  bottom: 0; /* Di bawah padding-bottom */
-  height: 2px;
-  width: 30%; /* Lebar aksen garis */
-  max-width: 60px; /* Batas maksimal lebar */
-  background-color: var(--color-accent);
-  opacity: 0.7;
-  filter: drop-shadow(0 0 3px var(--color-accent)); /* Efek glow halus */
+  inset: 0; /* Mengisi seluruh kontainer */
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 20%, transparent) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  pointer-events: none;
 }
 
-.about-title-runestone::before {
-  left: 50%;
-  transform: translateX(calc(-100% - 15px)); /* Kiri dari tengah */
-}
-
-.about-title-runestone::after {
-  right: 50%;
-  transform: translateX(calc(100% + 15px)); /* Kanan dari tengah */
+.group:hover .project-image-container::after {
+  opacity: 1;
+  transform: scale(1.2); /* Glow membesar */
 }

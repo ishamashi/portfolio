@@ -5,24 +5,24 @@ import Navbar from "@/components/Navbar";
 // import Footer from "@/components/Footer"; // Jika Anda memutuskan untuk menambahkannya
 
 export const metadata: Metadata = {
-  title: "[Nama Anda] - Software Engineer Portofolio", // Judul yang lebih deskriptif
-  description: "Portofolio Web [Nama Anda], seorang Software Engineer yang berfokus pada solusi digital inovatif.",
+  title: "Icho Ishamashi - Software Engineer Portofolio", // Judul yang lebih deskriptif
+  description: "Portofolio Web Icho Ishamashi, seorang Software Engineer yang berfokus pada solusi digital inovatif.",
   // Tambahkan Open Graph dan Twitter card metadata di sini untuk sharing yang lebih baik
   // contoh:
-  // openGraph: {
-  //   title: '[Nama Anda] - Software Engineer',
-  //   description: 'Portofolio Web [Nama Anda]...',
-  //   type: 'website',
-  //   url: 'https://domainanda.com', // Ganti dengan domain Anda nanti
-  //   images: [
-  //     {
-  //       url: 'https://domainanda.com/og-image.png', // URL ke gambar Open Graph
-  //       width: 1200,
-  //       height: 630,
-  //       alt: 'Hero Image Portofolio [Nama Anda]',
-  //     },
-  //   ],
-  // },
+  openGraph: {
+    title: "Icho Ishamashi - Software Engineer",
+    description: "Portofolio Web Icho Ishamashi...",
+    type: "website",
+    url: "https://ishamashi.com", // Ganti dengan domain Anda nanti
+    images: [
+      {
+        url: "https://ishamashi.com/og-image.png", // URL ke gambar Open Graph
+        width: 1200,
+        height: 630,
+        alt: "Hero Image Portofolio Icho Ishamashi",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
