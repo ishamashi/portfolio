@@ -31,7 +31,6 @@ const MobileAboutLayout = () => {
           title="The Saga"
           rune="ᛊ" // Sowilo
           initialTeaser="Tracing the path from the first spark of curiosity to the seasoned craftsman of today..."
-          initiallyOpen={true} // Buka section pertama secara default
         >
           <SagaContent />
         </MobileAboutScrollSection>

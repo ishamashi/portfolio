@@ -43,7 +43,7 @@ export default function RootLayout({
         <Navbar />
         {/* Menggunakan kelas 'container' bawaan Tailwind untuk konsistensi responsif,
             dan padding standar untuk halaman. */}
-        <main className="container mx-auto min-h-screen px-4 py-8 sm:px-6 lg:px-8">{children}</main>
+        <main className="container mx-auto min-h-[90vh] px-4 py-8 sm:px-6 lg:px-8">{children}</main>
         {/* <Footer /> */}
       </body>
     </html>

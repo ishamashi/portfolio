@@ -15,21 +15,21 @@ const MobileTerminalView = () => {
     { cmd: "whoami", output: "Icho Ishamashi - Digital Craftsman [SleepyHead]", isLink: false },
     { cmd: "ls ./forgings", output: "Explore all forged artifacts...", href: "/projects", isLink: true },
     { cmd: "cat ./saga.md", output: "Uncover my full saga...", href: "/about", isLink: true },
-    { cmd: "sendraven icho", output: "Dispatch a message...", href: "/contact", isLink: true },
+    { cmd: "curl contact.me", output: "Dispatch a message...", href: "/contact", isLink: true },
     { cmd: "cat ./inspiration.txt", output: "Eitri, Brokkr, the echoes of Niðavellir's anvils...", isLink: false },
   ];
   const promptUser = "[SleepyHead]";
   const promptHost = "DigitalForge";
 
   return (
-    <div className="fixed inset-0 z-[100] flex h-full w-full flex-col bg-background p-4 font-mono text-sm text-foreground md:hidden">
+    <div className="fixed inset-0 z-[100] flex h-full w-full flex-col bg-background p-4 font-mono text-xs text-foreground md:hidden">
       <div className="flex-grow overflow-y-auto">
-        <p className="text-accent">Niðavellir Command Interface - Welcome, Wanderer.</p>
+        <p className="text-accent mb-4">Niðavellir Command Interface - Welcome, Wanderer.</p>
         <p>Available commands listed below. Click to execute.</p>
-        <p className="mb-2">-------------------------------------------------</p>
+        <p className="mb-2">-----------------------------------------------</p>
 
         {commands.map((item, index) => (
-          <div key={index} className="mb-1">
+          <div key={index} className="mb-2">
             <span className="text-accent/80">
               {promptUser}@{promptHost}:~${" "}
             </span>

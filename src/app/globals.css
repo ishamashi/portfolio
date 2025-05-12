@@ -351,3 +351,86 @@ h6 {
   /* Atau gunakan SVG background-image untuk pola simpul/jahitan */
   border-bottom: 2px dashed color-mix(in srgb, var(--color-border) 40%, transparent);
 }
+
+/* app/globals.css */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Styling tambahan untuk rune jika perlu */
+.sending-rune text {
+  user-select: none; /* Agar rune tidak bisa dipilih seperti teks biasa */
+}
+
+/* app/globals.css */
+
+/* ... (animasi pulse-slow sudah ada) ... */
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+  transform-origin: center center;
+}
+.animate-spin-slow-reverse {
+  animation: spin-slow 35s linear infinite reverse;
+  transform-origin: center center;
+}
+
+/* Animasi untuk garis energi keluar */
+@keyframes ping-once {
+  0% {
+    transform: scale(0.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+.animate-ping-once {
+  animation: ping-once 0.6s cubic-bezier(0, 0, 0.2, 1) forwards; /* forwards agar tetap di state akhir */
+  transform-origin: center center;
+}
+
+/* Animasi denyut halus saat rune diaktifkan */
+@keyframes ping-subtle-once {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.animate-ping-subtle-once {
+  animation: ping-subtle-once 0.4s ease-in-out;
+  transform-origin: center center;
+}
+
+/* Styling tambahan jika perlu */
+.sending-rune text {
+  user-select: none;
+}
