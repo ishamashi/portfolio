@@ -1,0 +1,24 @@
+<!-- public/textures/runic-border-vertical-pattern.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="240" viewBox="0 0 30 240">
+  <defs>
+    <style>
+      .rune-v { 
+        font-family: 'JetBrains Mono', 'Nama Font Rune Anda jika punya', sans-serif; 
+        font-size: 24px; 
+        fill: rgb(96, 165, 250);
+        opacity: 1;
+        text-anchor: middle; 
+      }
+    </style>
+  </defs>
+  <!-- Rune disusun vertikal. x="15" untuk centering di lebar 30px jika text-anchor="middle" -->
+  <text x="50%" y="25" class="rune-v" text-anchor="middle">ᚲ</text> 
+  <text x="50%" y="55" class="rune-v" text-anchor="middle">ᛟ</text>
+  <text x="50%" y="85" class="rune-v" text-anchor="middle">ᚾ</text>
+  <text x="50%" y="115" class="rune-v" text-anchor="middle">ᛏ</text>
+  <text x="50%" y="145" class="rune-v" text-anchor="middle">ᚨ</text>
+  <text x="50%" y="175" class="rune-v" text-anchor="middle">ᚲ</text> 
+  <text x="50%" y="205" class="rune-v" text-anchor="middle">ᛏ</text>
+  <!-- Tambahkan pemisah atau ulangi pola jika perlu untuk tinggi 150px -->
+  <text x="50%" y="235" class="rune-v" text-anchor="middle">᛫</text> <!-- Titik pemisah -->
+</svg>

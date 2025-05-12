@@ -289,3 +289,49 @@ h6 {
   opacity: 1;
   transform: scale(1.2); /* Glow membesar */
 }
+
+/* app/globals.css */
+
+/* Variabel warna rune sudah ada dari AboutSection */
+/* :root {
+  --color-border-rune: var(--color-border); 
+} */
+
+.contact-section-runic-sides {
+  position: relative;
+  /* Padding disesuaikan agar ada ruang untuk rune di kiri dan kanan */
+  padding-left: 3rem; /* Lebih besar dari lebar SVG rune (30px) + sedikit spasi */
+  padding-right: 3rem;
+  /* Padding atas dan bawah bisa tetap dari kelas Tailwind atau diatur di sini */
+  /* padding-top: 4rem; padding-bottom: 4rem; (contoh jika ingin padding seragam) */
+
+  background-color: var(--color-surface); /* Latar belakang section */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Penting agar pseudo-elemen tidak keluar */
+}
+
+/* Pseudo-elemen untuk bingkai rune kiri dan kanan */
+.contact-section-runic-sides::before,
+.contact-section-runic-sides::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px; /* Sama dengan lebar SVG rune pattern vertikal */
+  background-image: url("/textures/runic-border-vertical-pattern.svg");
+  background-repeat: repeat-y; /* Ulangi secara vertikal */
+  background-size: 100% auto; /* Sesuaikan lebar SVG dengan pseudo-elemen */
+  opacity: 0.3; /* Buat lebih subtil, sesuaikan sesuai selera */
+  pointer-events: none; /* Agar tidak mengganggu interaksi */
+}
+
+.contact-section-runic-sides::before {
+  left: 10px; /* Jarak dari kiri */
+}
+
+.contact-section-runic-sides::after {
+  right: 10px; /* Jarak dari kanan */
+  /* Mungkin dibalik untuk variasi jika desain SVG Anda asimetris */
+  /* transform: scaleX(-1); */
+}
