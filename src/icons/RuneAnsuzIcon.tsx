@@ -1,7 +1,8 @@
 // components/icons/RuneAnsuzIcon.tsx
 import React from "react";
 
-interface RuneIconProps extends React.SVGProps<SVGSVGElement> {}
+type RuneIconProps = React.SVGProps<SVGSVGElement>;
+
 const RuneAnsuzIcon: React.FC<RuneIconProps> = (props) => {
   return (
     <svg
