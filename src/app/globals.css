@@ -434,3 +434,11 @@ h6 {
 .sending-rune text {
   user-select: none;
 }
+
+@keyframes pulse-very-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+.animate-pulse-very-slow {
+  animation: pulse-very-slow 6s infinite ease-in-out;
+}

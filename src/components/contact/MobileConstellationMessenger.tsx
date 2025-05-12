@@ -30,7 +30,7 @@ const runes: ConstellationRune[] = [
   { id: "twitter", label: "Twitter", Icon: RuneRaidhoTwitterIcon, x: 75, y: 65, actionType: "link", value: "https://twitter.com/ishamashi" },
 ];
 
-const centerRune = { id: 'send', Icon: RuneAnsuzSendIcon, x: 50, y: 50 };
+const centerRune = { id: "send", Icon: RuneAnsuzSendIcon, x: 50, y: 50 };
 
 const MobileConstellationMessenger: React.FC = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
@@ -48,48 +48,45 @@ const MobileConstellationMessenger: React.FC = () => {
   const handleDragStart = (rune: ConstellationRune, event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     setDraggingRune(rune);
     setIsConnecting(true);
-    setFeedbackMessage(null); // Hapus feedback lama
-    // Set posisi awal garis (relatif terhadap parent)
+    setFeedbackMessage(null);
+
     if (constraintsRef.current) {
       const rect = constraintsRef.current.getBoundingClientRect();
-      // Koordinat rune dalam % -> px
-      const startPxX = rect.width * (rune.x / 100);
-      const startPxY = rect.height * (rune.y / 100);
-      lineStartX.set(startPxX);
-      lineStartY.set(startPxY);
-      // Awalnya end sama dengan start
-      lineEndX.set(startPxX + info.offset.x);
-      lineEndY.set(startPxY + info.offset.y);
+
+      const startXRelativeToContainer = info.point.x - rect.left;
+      const startYRelativeToContainer = info.point.y - rect.top;
+
+      // Set motion value garis berdasarkan posisi aktual ini
+      lineStartX.set(startXRelativeToContainer);
+      lineStartY.set(startYRelativeToContainer);
+      // Awalnya, titik akhir sama dengan titik awal
+      lineEndX.set(startXRelativeToContainer);
+      lineEndY.set(startYRelativeToContainer);
     }
   };
 
+  // == PERBAIKAN DI SINI ==
   const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    // Update posisi akhir garis mengikuti jari/mouse
-    if (constraintsRef.current && draggingRune) {
-      const rect = constraintsRef.current.getBoundingClientRect();
-      const startPxX = rect.width * (draggingRune.x / 100);
-      const startPxY = rect.height * (draggingRune.y / 100);
-      lineEndX.set(startPxX + info.offset.x);
-      lineEndY.set(startPxY + info.offset.y);
-    }
+    // Update titik akhir garis berdasarkan offset dari titik awal AKTUAL
+    // info.offset adalah perpindahan {x, y} dari titik drag dimulai
+    lineEndX.set(lineStartX.get() + info.offset.x);
+    lineEndY.set(lineStartY.get() + info.offset.y);
   };
 
+  // == PERBAIKAN DI SINI ==
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsConnecting(false); // Sembunyikan garis
+    setIsConnecting(false);
     if (draggingRune && constraintsRef.current) {
       const rect = constraintsRef.current.getBoundingClientRect();
-      // Hitung posisi target (rune tengah) dalam px
       const targetX = rect.width * (centerRune.x / 100);
       const targetY = rect.height * (centerRune.y / 100);
-      // Hitung posisi akhir drag dalam px
-      const startPxX = rect.width * (draggingRune.x / 100);
-      const startPxY = rect.height * (draggingRune.y / 100);
-      const endX = startPxX + info.offset.x;
-      const endY = startPxY + info.offset.y;
 
-      // Cek apakah jarak akhir drag cukup dekat dengan rune tengah (misal, radius 30px)
+      // Hitung posisi akhir drag berdasarkan titik awal AKTUAL dan offset
+      const endX = lineStartX.get() + info.offset.x;
+      const endY = lineStartY.get() + info.offset.y;
+
       const distance = Math.sqrt(Math.pow(endX - targetX, 2) + Math.pow(endY - targetY, 2));
-      const targetRadius = 30; // Sesuaikan radius target
+      const targetRadius = 35; // Mungkin perbesar sedikit radius target
 
       if (distance <= targetRadius) {
         // Koneksi Berhasil!
@@ -242,11 +239,3 @@ const MobileConstellationMessenger: React.FC = () => {
 export default MobileConstellationMessenger;
 
 // CSS tambahan untuk animasi bintang
-// globals.css
-// @keyframes pulse-very-slow {
-//   0%, 100% { opacity: 0.3; }
-//   50% { opacity: 0.8; }
-// }
-// .animate-pulse-very-slow {
-//   animation: pulse-very-slow 6s infinite ease-in-out;
-// }
