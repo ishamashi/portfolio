@@ -53,7 +53,7 @@ const InteractiveConstellation: React.FC<InteractiveConstellationProps> = ({ onF
         return (
           <g
             key={facet}
-            className="constellation-node cursor-pointer group"
+            className="constellation-node cursor-pointer focus:outline-none group"
             onClick={() => onFacetSelect(facet)}
             aria-label={`Select ${label} section`}
             tabIndex={0} // Membuatnya focusable

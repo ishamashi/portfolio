@@ -335,3 +335,19 @@ h6 {
   /* Mungkin dibalik untuk variasi jika desain SVG Anda asimetris */
   /* transform: scaleX(-1); */
 }
+
+/* app/globals.css */
+
+/* Contoh tekstur perkamen (ganti dengan URL gambar Anda) */
+.bg-parchment-texture {
+  /* background-image: url('/textures/parchment-dark.png'); */
+  background-color: var(--color-background); /* Fallback jika gambar gagal load */
+  /* background-blend-mode: overlay; Sesuaikan blend mode */
+  /* background-size: cover; */
+}
+
+/* Contoh styling untuk border pemisah di mobile */
+.mobile-section-divider {
+  /* Atau gunakan SVG background-image untuk pola simpul/jahitan */
+  border-bottom: 2px dashed color-mix(in srgb, var(--color-border) 40%, transparent);
+}
