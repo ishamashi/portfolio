@@ -1,28 +1,80 @@
 // app/about/page.tsx
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import InteractiveConstellation from "@/components/about/InteractiveConstellation";
+import SagaContent from "@/components/about/SagaContent";
+import PhilosophyContent from "@/components/about/PhilosophyContent";
+import SkillsContent from "@/components/about/SkillsContent";
+import InspirationContent from "@/components/about/InspirationContent";
+// import MusingsContent from '@/components/about/MusingsContent'; // Jika Anda menambahkannya
+
+// Definisikan tipe facet di sini atau impor jika di file terpisah
+export type AboutFacet = "saga" | "philosophy" | "skills" | "inspiration" | "musings";
+
 export default function AboutPage() {
-  const skills = ["HTML5", "CSS3", "JavaScript", "PHP", "Python", "React", "Node.js", "MySQL", "PostgreSQL", "Tailwind CSS", "Git", "Visual Studio Code", "Linux", "Docker", "AWS (Dasar)"]; // Daftar lengkap
+  // Default ke 'saga' atau facet lain yang Anda inginkan sebagai tampilan awal
+  const [activeFacet, setActiveFacet] = useState<AboutFacet>("saga");
+
+  const renderContent = () => {
+    switch (activeFacet) {
+      case "saga":
+        return <SagaContent key="saga" />; // key penting untuk AnimatePresence
+      case "philosophy":
+        return <PhilosophyContent key="philosophy" />;
+      case "skills":
+        return <SkillsContent key="skills" />;
+      case "inspiration":
+        return <InspirationContent key="inspiration" />;
+      // case 'musings':
+      //   return <MusingsContent key="musings" />;
+      default:
+        // Fallback atau tampilan default jika activeFacet null/undefined
+        return <SagaContent key="default-saga" />;
+    }
+  };
+
+  // Animasi untuk konten
+  const contentVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: -30, scale: 0.98 },
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="mb-10 text-center text-4xl font-bold tracking-tight sm:text-5xl">&sol;&sol; Tentang Saya: Icho Ishamashi</h1>
-      <div className="mx-auto max-w-3xl space-y-6 text-left text-foreground/80">
-        {" "}
-        {/* Ubah ke text-left untuk bacaan panjang */}
-        <p>Halo! Saya Icho Ishamashi, seorang Software Engineer dengan pengalaman lebih dari 10 tahun di dunia pengembangan web dan desain. Saya sangat antusias dengan segala hal yang berkaitan dengan teknologi, mulai dari proses perancangan antarmuka pengguna yang intuitif hingga implementasi backend yang robust dan skalabel.</p>
-        <p>Perjalanan saya di dunia kode dimulai dari rasa penasaran yang besar terhadap bagaimana sebuah website atau aplikasi bisa berjalan. Sejak saat itu, saya terus belajar dan mengeksplorasi berbagai teknologi baru. Saya percaya bahwa belajar adalah proses seumur hidup, terutama di industri teknologi yang berkembang pesat ini.</p>
-        <p>Saya dikenal dengan alias [SleepyHead] di beberapa komunitas developer, mungkin karena saya sering begadang untuk menyelesaikan proyek atau mempelajari konsep baru (atau mungkin karena saya suka tidur!). Namun, di balik itu, saya memiliki dedikasi tinggi dan pantang menyerah dalam menghadapi tantangan teknis. Memecahkan masalah dan melihat ide berubah menjadi produk nyata adalah kepuasan terbesar bagi saya.</p>
-        <p>Filosofi saya dalam bekerja adalah selalu berusaha menulis kode yang bersih, terstruktur, dan mudah dipelihara. Saya juga sangat menghargai kolaborasi tim dan komunikasi yang efektif.</p>
-        <div>
-          <h2 className="mb-4 mt-10 text-3xl font-semibold tracking-tight text-foreground">Keahlian Teknis</h2>
-          <div className="flex flex-wrap gap-3">
-            {skills.map((skill) => (
-              <span key={skill} className="rounded-full bg-surface px-4 py-2 text-sm font-medium text-accent shadow-sm border border-border hover:bg-accent hover:text-white transition-colors cursor-default">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-        {/* Anda bisa menambahkan sub-section lain: Pengalaman Kerja, Pendidikan, dll. */}
-      </div>
+    // Tambahkan kelas untuk latar belakang nebula jika Anda membuatnya
+    // className="bg-nebula"
+    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 min-h-screen">
+      <header className="mb-12 md:mb-16 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-mono tracking-tight text-foreground">
+          Unveiling the Runes: <span className="text-accent">The Saga of Icho Ishamashi</span>
+        </h1>
+        <p className="mt-3 text-lg text-foreground/70">Explore the constellation of experience, philosophy, and inspiration that shapes the digital craftsman.</p>
+      </header>
+
+      {/* Konstelasi Interaktif */}
+      <section className="mb-12 md:mb-16 h-52 sm:h-64 md:h-72 flex items-center justify-center">
+        {/* Tinggi disesuaikan agar pas */}
+        <InteractiveConstellation onFacetSelect={setActiveFacet} activeFacet={activeFacet} />
+      </section>
+
+      {/* Area Konten Dinamis */}
+      <section className="relative overflow-hidden min-h-[400px] bg-surface/50 rounded-xl shadow-lg p-6 md:p-10 border border-border/20">
+        {/* Beri background & padding pada area konten */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFacet} // Trigger animasi saat facet berubah
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // Custom cubic-bezier
+          >
+            {renderContent()}
+          </motion.div>
+        </AnimatePresence>
+      </section>
     </div>
   );
 }
