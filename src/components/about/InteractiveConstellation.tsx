@@ -34,7 +34,7 @@ const InteractiveConstellation: React.FC<InteractiveConstellationProps> = ({ onF
       className="w-full h-full max-w-lg mx-auto" // Ukuran responsif
       aria-labelledby="constellationTitle"
     >
-      <title id="constellationTitle">Interactive Constellation of Icho Ishamashi's Profile</title>
+      <title id="constellationTitle">Interactive Constellation of Icho Ishamashi&apos;s Profile</title>
 
       {/* Garis Koneksi */}
       <g className="connections opacity-30">

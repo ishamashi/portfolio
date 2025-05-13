@@ -14,7 +14,7 @@ const PhilosophyContent = () => {
   return (
     <div className="space-y-6">
       <h2 className="font-mono !text-2xl border-b border-border/30 pb-2 text-accent">
-        The Craftsman's Code: Principles of the Forge
+        The Craftsman&apos;s Code: Principles of the Forge
       </h2>
       <ul className="list-none space-y-5 pl-0">
         {principles.map((p) => (

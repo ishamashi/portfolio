@@ -101,7 +101,7 @@ const MobileNavbar = () => {
             >
               <nav>
                 <ul className="flex flex-col">
-                  {navItems.map((item, index) => (
+                  {navItems.map((item) => (
                     <motion.li key={item.href} variants={menuItemVariants}>
                       <Link
                         href={item.href}

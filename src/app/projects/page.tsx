@@ -96,7 +96,7 @@ export default function ProjectsPage() {
         {/* Padding vertikal dan sedikit horizontal untuk mobile */}
         <header className="mb-10 text-center">
           <h1 className="text-3xl font-bold font-mono tracking-tight text-foreground">
-            The Dwarf's <span className="text-accent">Ledger</span>
+            The Dwarf&apos;s <span className="text-accent">Ledger</span>
           </h1>
           <p className="mt-2 text-sm text-foreground/70">Scroll to unveil artifacts from the forge. Tap to inspect deeper.</p>
         </header>

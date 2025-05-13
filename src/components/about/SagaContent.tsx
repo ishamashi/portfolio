@@ -15,14 +15,14 @@ const SagaContent = () => {
         Trials by Fire: Forging Experience
       </h2>
       <p>
-        With over a decade navigating the ever-shifting landscapes of web development, I've weathered the heat of demanding projects and complex challenges. From architecting robust back-end systems with Node.js and Python to sculpting intuitive front-end experiences using React and Next.js, each project was an anvil upon which skills were honed. I learned the importance of clean code not just as a craft, but as a map for future explorers (including my future self!). Experience taught me the Dwarven values of perseverance, meticulousness, and the deep satisfaction of building something enduring and functional.
+        With over a decade navigating the ever-shifting landscapes of web development, I&apos;ve weathered the heat of demanding projects and complex challenges. From architecting robust back-end systems with Node.js and Python to sculpting intuitive front-end experiences using React and Next.js, each project was an anvil upon which skills were honed. I learned the importance of clean code not just as a craft, but as a map for future explorers (including my future self!). Experience taught me the Dwarven values of perseverance, meticulousness, and the deep satisfaction of building something enduring and functional.
       </p>
 
       <h2 className="font-mono !mb-4 !mt-8 !text-2xl border-b border-border/30 pb-2 text-accent">
         The Ever-Seeking Path: Continuous Learning
       </h2>
       <p>
-        Like the Dwarves of Niðavellir constantly seeking rarer metals and perfecting their techniques, my quest for knowledge never ceases. The world of technology is a vast, dynamic Yggdrasil – there's always a new branch to explore, a new rune to decipher. Whether it's delving into cloud infrastructure, mastering new database paradigms, or understanding the nuances of user experience design, the desire to learn and adapt remains the guiding star of my professional saga.
+        Like the Dwarves of Niðavellir constantly seeking rarer metals and perfecting their techniques, my quest for knowledge never ceases. The world of technology is a vast, dynamic Yggdrasil – there&apos;s always a new branch to explore, a new rune to decipher. Whether it&apos;s delving into cloud infrastructure, mastering new database paradigms, or understanding the nuances of user experience design, the desire to learn and adapt remains the guiding star of my professional saga.
       </p>
     </div>
   );

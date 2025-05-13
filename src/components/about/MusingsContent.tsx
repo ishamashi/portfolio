@@ -53,7 +53,7 @@ const MusingsContent = () => {
           {musing.type === "nordic_link" && <p className="italic text-foreground/75">{musing.text}</p>}
         </div>
       ))}
-      <p className="text-sm text-center text-foreground/60 pt-4">~ These thoughts are ever-evolving, like patterns in the forge's fire ~</p>
+      <p className="text-sm text-center text-foreground/60 pt-4">~ These thoughts are ever-evolving, like patterns in the forge&apos;s fire ~</p>
     </div>
   );
 };

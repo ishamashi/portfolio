@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
+import { motion, useMotionValue, PanInfo } from "framer-motion";
 
 import RuneGeboEmailIcon from "@/icons/RuneGeboEmailIcon";
 import RuneFehuGithubIcon from "@/icons/RuneFehuGithubIcon";
