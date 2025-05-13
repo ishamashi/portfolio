@@ -1,6 +1,6 @@
 // components/HeroSection.tsx
 import Link from "next/link";
-import NidavellirAnimation from "./NidavellirAnimation";
+import NidavellirAnimation from "../NidavellirAnimation";
 
 const HeroSection = () => {
   return (
@@ -23,7 +23,9 @@ const HeroSection = () => {
             </Link>
           </div>
         </div>
-        <div className="hidden md:block h-96 w-full rounded-lg bg-background overflow-hidden"> {/* Beri tinggi lebih agar animasi lebih terlihat */}
+        <div className="hidden md:block h-96 w-full rounded-lg bg-background overflow-hidden">
+          {" "}
+          {/* Beri tinggi lebih agar animasi lebih terlihat */}
           <NidavellirAnimation />
         </div>
       </div>

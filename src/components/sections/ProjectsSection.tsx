@@ -1,6 +1,6 @@
 // components/ProjectsSection.tsx
 import Link from "next/link";
-import ProjectCard, { Project } from "./ProjectCard"; // Impor ProjectCard dan tipe Project
+import ProjectCard, { Project } from "../ProjectCard"; // Impor ProjectCard dan tipe Project
 
 import RuneOthalaIcon from "@/icons/RuneOthalaIcon"; // Impor ikon
 

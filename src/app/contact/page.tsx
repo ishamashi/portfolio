@@ -1,11 +1,37 @@
 // app/contact/page.tsx
 "use client"; // Tambahkan jika belum ada
 
+import JsonLdScript from "@/components/JsonLdScript";
+import type { ContactPage, WithContext } from "schema-dts";
+
+import { useState, useEffect } from "react"; // Impor hooks
+import type { Metadata } from "next";
 import InteractiveSendingStone from "@/components/contact/InteractiveSendingStone";
 import MobileConstellationMessenger from "@/components/contact/MobileConstellationMessenger"; // Impor layout mobile
-import { useState, useEffect } from "react"; // Impor hooks
+
+// Definisikan metadata untuk halaman contact
+export const metadata: Metadata = {
+  title: "Contact Icho Ishamashi - Send a Raven",
+  description: "Hubungi Icho Ishamashi ([SleepyHead]) melalui Sending Stone interaktif atau temukan detail kontak lainnya untuk kolaborasi dan diskusi.",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 export default function ContactPage() {
+  const contactPageSchema: WithContext<ContactPage> = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: metadata.title as string,
+    description: metadata.description ?? "Hubungi Icho Ishamashi.",
+    url: "https://ishamashi.com/contact", // Ganti domain
+    isPartOf: { "@type": "WebSite", "@id": "https://ishamashi.com#website" },
+    mainEntity: {
+      "@type": "Person",
+      "@id": "https://ishamashi.com#person",
+    },
+  };
+
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -24,6 +50,7 @@ export default function ContactPage() {
   return (
     // Wrapper utama mungkin perlu styling latar belakang nebula/bintang
     <div className="container mx-auto px-4 py-12 sm:py-16 sm:px-6 lg:px-8 min-h-screen flex flex-col">
+      <JsonLdScript jsonData={contactPageSchema} />
       {/* Judul & Deskripsi - Sama untuk keduanya tapi mungkin ukuran berbeda */}
       <header className="mb-8 md:mb-12 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold font-mono tracking-tight text-foreground">

@@ -1,13 +1,52 @@
 // app/projects/page.tsx
 "use client";
 
+import JsonLdScript from "@/components/JsonLdScript";
+import type { CollectionPage, WithContext } from "schema-dts";
+
+import type { Metadata } from "next"; // Impor Metadata jika belum
 import { useState, useEffect } from "react";
 import { allMyProjects, DetailedProject } from "./projectsData";
 import GrandRunestone from "@/components/projects/GrandRunestone";
 import ThumbnailRunestone from "@/components/projects/ThumbnailRunestone";
 import MobileProjectScrollEntry from "@/components/projects/MobileProjectScrollEntry"; // Impor komponen mobile
 
+export const metadata: Metadata = {
+  title: "Forged Artifacts - Projects by Icho Ishamashi",
+  description: "Galeri proyek digital yang ditempa oleh Icho Ishamashi ([SleepyHead]), menampilkan keahlian dalam Web Development, React, Node.js, dan teknologi lainnya.",
+  alternates: {
+    canonical: "/projects",
+  },
+};
+
 export default function ProjectsPage() {
+  const collectionPageSchema: WithContext<CollectionPage> = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: metadata.title as string,
+    description: metadata.description ?? "Koleksi proyek oleh Icho Ishamashi.",
+    url: "https://ishamashi.com/projects", // Ganti domain
+    isPartOf: { "@type": "WebSite", "@id": "https://ishamashi.com#website" },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: allMyProjects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: project.title,
+          description: project.description, // Deskripsi singkat proyek
+          url: project.liveLink || `https://ishamashi.com/projects#${project.id}`, // Ganti domain
+          keywords: project.techStack.join(", "),
+          author: {
+            "@type": "Person",
+            "@id": "https://ishamashi.com#person",
+          },
+        },
+      })),
+    },
+  };
+
   const [selectedProjectDesktop, setSelectedProjectDesktop] = useState<DetailedProject | null>(null);
   const [currentIndexDesktop, setCurrentIndexDesktop] = useState(0);
   const [isLoading, setIsLoading] = useState(true); // State untuk loading awal
@@ -47,8 +86,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="container mx-auto px-0 sm:px-6 lg:px-8 min-h-screen">
-      {" "}
-      {/* Hapus padding horizontal untuk mobile agar bisa full-width */}
+      <JsonLdScript jsonData={collectionPageSchema} /> {/* Hapus padding horizontal untuk mobile agar bisa full-width */}
       {/* --- Versi Desktop --- */}
       <div className="hidden md:block py-12">
         {" "}

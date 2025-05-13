@@ -1,6 +1,8 @@
 // app/layout.tsx
 import React from "react"; // Hapus import React jika tidak digunakan langsung
 import type { Metadata } from "next";
+import JsonLdScript from "@/components/JsonLdScript";
+import type { Person, WebSite, WithContext } from "schema-dts";
 // Hapus import usePathname, Navbar, MobileNavbar dari sini
 import "./globals.css";
 import MainLayoutWrapper from "@/components/MainLayoutWrapper"; // Impor wrapper baru
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Icho Ishamashi Portfolio", // %s akan diganti judul halaman
   },
   // Deskripsi Default (Sangat Penting!)
-  description: "Portofolio Icho Ishamashi ([SleepyHead]), seorang Software Engineer & Fullstack Developer berpengalaman lebih dari 10 tahun, ahli dalam Web Development & Design, menciptakan solusi digital inovatif.",
+  description: "Portofolio Icho Ishamashi [SleepyHead], seorang Software Engineer & Fullstack Developer berpengalaman lebih dari 10 tahun, ahli dalam Web Development & Design, menciptakan solusi digital inovatif.",
   // Tambahkan Keywords (Meskipun Google kurang memperhatikannya, tidak ada salahnya)
   keywords: ["Icho Ishamashi", "Software Engineer", "Fullstack Developer", "Web Development", "Portfolio", "Next.js", "React", "TypeScript", "SleepyHead", "Niðavellir", "Digital Craftsman"],
   // Metadata Open Graph (Untuk Sharing di Media Sosial seperti Facebook, LinkedIn)
@@ -72,9 +74,62 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Hapus usePathname dan isHomePage dari sini
+  const websiteSchema: WithContext<WebSite> = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Icho Ishamashi Portfolio",
+    url: "https://ishamashi.com", // Ganti!
+    potentialAction: [
+      // Beri tahu Google tentang navigasi utama
+      {
+        "@type": "ReplaceAction",
+        name: "Explore Forgings", // Gunakan nama link Anda
+        target: "https://ishamashi.com/projects", // URL Lengkap
+      },
+      {
+        "@type": "ReplaceAction",
+        name: "Read The Saga",
+        target: "https://ishamashi.com/about",
+      },
+      {
+        "@type": "ReplaceAction",
+        name: "Send a Raven",
+        target: "https://ishamashi.com/contact",
+      },
+    ],
+    // (Opsional) Search Action untuk Sitelinks Search Box
+    // potentialAction: {
+    //  "@type": "SearchAction",
+    //  "target": "https://ishamashi.com/search?q={search_term_string}",
+    //  "query-input": "required name=search_term_string"
+    // },
+  };
+
+  const personSchema: WithContext<Person> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://ishamashi.com#person", // ID unik untuk entitas ini
+    name: "Icho Ishamashi",
+    alternateName: "[SleepyHead]",
+    url: "https://ishamashi.com", // URL Portfolio Anda
+    jobTitle: "Software Engineer / Digital Craftsman",
+    description: "Experienced Fullstack Developer specializing in Web Development & Design.",
+    knowsAbout: ["Web Development", "Software Engineering", "React", "Node.js", "Next.js", "TypeScript", "PHP", "Python", "PostgreSQL", "MySQL", "Tailwind CSS", "UI/UX Design", "Norse Mythology"], // Keahlian/Minat
+    sameAs: [
+      // Tautan ke profil sosial media/profesional
+      "https://github.com/ishamashi",
+      "https://linkedin.com/in/ishamashi",
+      "https://twitter.com/ishamashi",
+      // Tambahkan yang lain
+    ],
+  };
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        {/* Sisipkan JSON-LD di head */}
+        <JsonLdScript jsonData={websiteSchema} />
+        <JsonLdScript jsonData={personSchema} />
+      </head>
       <body>
         {/* Render komponen wrapper klien, yang akan menangani navbar dan main */}
         <MainLayoutWrapper>{children}</MainLayoutWrapper>

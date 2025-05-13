@@ -1,22 +1,51 @@
 // app/about/page.tsx
 "use client";
 
+import JsonLdScript from "@/components/JsonLdScript";
+import type { ProfilePage, WithContext } from "schema-dts";
+
 import { useState } from "react";
+import type { Metadata } from "next";
 import { motion, AnimatePresence } from "framer-motion";
 import InteractiveConstellation from "@/components/about/InteractiveConstellation";
 import SagaContent from "@/components/about/SagaContent";
 import PhilosophyContent from "@/components/about/PhilosophyContent";
 import SkillsContent from "@/components/about/SkillsContent";
 import InspirationContent from "@/components/about/InspirationContent";
-import MusingsContent from '@/components/about/MusingsContent'; // Jika Anda menambahkannya
+import MusingsContent from "@/components/about/MusingsContent"; // Jika Anda menambahkannya
 
-import MobileAboutLayout from '@/components/about/MobileAboutLayout'; // Impor layout mobile
+import MobileAboutLayout from "@/components/about/MobileAboutLayout"; // Impor layout mobile
 
-// Definisikan tipe facet di sini atau impor jika di file terpisah
+export const metadata: Metadata = {
+  title: "About Icho Ishamashi (The Saga)",
+  description: "Kenali lebih dalam Icho Ishamashi [SleepyHead]: perjalanan, filosofi, keahlian, dan inspirasi di balik karyanya sebagai Digital Craftsman.",
+
+  openGraph: {
+    title: "The Saga of Icho Ishamashi - Digital Craftsman",
+    description: "Jelajahi kisah, filosofi, dan keahlian Icho Ishamashi.",
+    url: "https://ishamashi.com/about",
+  },
+  alternates: {
+    canonical: "/about",
+  },
+};
+
 export type AboutFacet = "saga" | "philosophy" | "skills" | "inspiration" | "musings";
 
 export default function AboutPage() {
-  // Default ke 'saga' atau facet lain yang Anda inginkan sebagai tampilan awal
+  const profilePageSchema: WithContext<ProfilePage> = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      // Menghubungkan ke Person schema yang sudah ada (via URL)
+      "@type": "Person",
+      "@id": "https://ishamashi.com#person", // Gunakan ID jika Anda definisikan di layout, atau URL
+    },
+    headline: (metadata.title as string) || "The Saga of Icho Ishamashi",
+    description: metadata.description as string, // Ambil dari metadata halaman
+    url: "https://ishamashi.com/about",
+  };
+
   const [activeFacet, setActiveFacet] = useState<AboutFacet>("saga");
 
   const renderContent = () => {
@@ -29,7 +58,7 @@ export default function AboutPage() {
         return <SkillsContent key="skills" />;
       case "inspiration":
         return <InspirationContent key="inspiration" />;
-      case 'musings':
+      case "musings":
         return <MusingsContent key="musings" />;
       default:
         // Fallback atau tampilan default jika activeFacet null/undefined
@@ -49,6 +78,7 @@ export default function AboutPage() {
     // className="bg-nebula"
 
     <>
+      <JsonLdScript jsonData={profilePageSchema} />
       {/* --- Versi Desktop --- */}
       <div className="hidden md:block">
         <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 min-h-screen">
