@@ -4,27 +4,18 @@
 import JsonLdScript from "@/components/JsonLdScript";
 import type { CollectionPage, WithContext } from "schema-dts";
 
-import type { Metadata } from "next"; // Impor Metadata jika belum
 import { useState, useEffect } from "react";
 import { allMyProjects, DetailedProject } from "./projectsData";
 import GrandRunestone from "@/components/projects/GrandRunestone";
 import ThumbnailRunestone from "@/components/projects/ThumbnailRunestone";
 import MobileProjectScrollEntry from "@/components/projects/MobileProjectScrollEntry"; // Impor komponen mobile
 
-export const metadata: Metadata = {
-  title: "Forged Artifacts - Projects by Icho Ishamashi",
-  description: "Galeri proyek digital yang ditempa oleh Icho Ishamashi ([SleepyHead]), menampilkan keahlian dalam Web Development, React, Node.js, dan teknologi lainnya.",
-  alternates: {
-    canonical: "/projects",
-  },
-};
-
 export default function ProjectsPage() {
   const collectionPageSchema: WithContext<CollectionPage> = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: metadata.title as string,
-    description: metadata.description ?? "Koleksi proyek oleh Icho Ishamashi.",
+    name: "Forged Artifacts - Projects by Icho Ishamashi",
+    description: "Galeri proyek digital yang ditempa oleh Icho Ishamashi [SleepyHead], menampilkan keahlian dalam Web Development, React, Node.js, dan teknologi lainnya.",
     url: "https://ishamashi.com/projects", // Ganti domain
     isPartOf: { "@type": "WebSite", "@id": "https://ishamashi.com#website" },
     mainEntity: {

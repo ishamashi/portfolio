@@ -1,6 +1,4 @@
 // app/about/page.tsx
-"use client";
-
 import JsonLdScript from "@/components/JsonLdScript";
 import type { ProfilePage, WithContext } from "schema-dts";
 

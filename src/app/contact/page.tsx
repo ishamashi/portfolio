@@ -5,25 +5,15 @@ import JsonLdScript from "@/components/JsonLdScript";
 import type { ContactPage, WithContext } from "schema-dts";
 
 import { useState, useEffect } from "react"; // Impor hooks
-import type { Metadata } from "next";
 import InteractiveSendingStone from "@/components/contact/InteractiveSendingStone";
 import MobileConstellationMessenger from "@/components/contact/MobileConstellationMessenger"; // Impor layout mobile
-
-// Definisikan metadata untuk halaman contact
-export const metadata: Metadata = {
-  title: "Contact Icho Ishamashi - Send a Raven",
-  description: "Hubungi Icho Ishamashi ([SleepyHead]) melalui Sending Stone interaktif atau temukan detail kontak lainnya untuk kolaborasi dan diskusi.",
-  alternates: {
-    canonical: "/contact",
-  },
-};
 
 export default function ContactPage() {
   const contactPageSchema: WithContext<ContactPage> = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: metadata.title as string,
-    description: metadata.description ?? "Hubungi Icho Ishamashi.",
+    name: "Contact Icho Ishamashi - Send a Raven",
+    description: "Hubungi Icho Ishamashi [SleepyHead] melalui Sending Stone interaktif atau temukan detail kontak lainnya untuk kolaborasi dan diskusi.",
     url: "https://ishamashi.com/contact", // Ganti domain
     isPartOf: { "@type": "WebSite", "@id": "https://ishamashi.com#website" },
     mainEntity: {
