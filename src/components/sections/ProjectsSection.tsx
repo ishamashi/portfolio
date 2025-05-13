@@ -11,7 +11,8 @@ const featuredProjects: Project[] = [
     id: 1,
     title: "Techne Indonesia",
     description: "Platform pembelajaran pemrograman dengan berbagai metode belajar seperti materi, video, kuis, dan bootcamp.",
-    imagePlaceholder: "[Logo/Gambar Techne Indonesia]",
+    imagePlaceholder: "/project/techne.png",
+    imageUrl: "/project/techne.png",
     techStack: ["Node.js", "Tailwind CSS", "PostgreSQL"],
     liveLink: "https://techne.id",
     sourceLink: "https://github.com/ishamashi", // Sesuaikan jika ada repo spesifik
@@ -20,9 +21,20 @@ const featuredProjects: Project[] = [
     id: 2,
     title: "Alchecode.com",
     description: "Salah satu proyek yang menjadi fokus untuk diselesaikan di tahun 2025, detail lebih lanjut akan ditambahkan.",
-    imagePlaceholder: "[Logo/Gambar Alchecode.com]",
+    imagePlaceholder: "/project/techne.png",
+    imageUrl: "/project/techne.png",
     techStack: ["React", "Node.js", "JavaScript"],
     liveLink: "https://alchecode.com",
+    sourceLink: "https://github.com/ishamashi", // Sesuaikan
+  },
+  {
+    id: 3,
+    title: "Fansfirst Tickets",
+    description: "A no-fee secondary ticket marketplace for Canadian sporting events, ensuring transparency.",
+    imagePlaceholder: "/project/fansfirst.png",
+    imageUrl: "/project/fansfirst.png",
+    techStack: ["React", "Node.js", "JavaScript"],
+    liveLink: "https://Fansfirst.ca",
     sourceLink: "https://github.com/ishamashi", // Sesuaikan
   },
   // Tambahkan 1 proyek unggulan lagi jika mau
