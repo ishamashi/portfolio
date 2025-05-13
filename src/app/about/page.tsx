@@ -1,9 +1,10 @@
 // app/about/page.tsx
+
+"use client";
 import JsonLdScript from "@/components/JsonLdScript";
 import type { ProfilePage, WithContext } from "schema-dts";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import { motion, AnimatePresence } from "framer-motion";
 import InteractiveConstellation from "@/components/about/InteractiveConstellation";
 import SagaContent from "@/components/about/SagaContent";
@@ -13,20 +14,6 @@ import InspirationContent from "@/components/about/InspirationContent";
 import MusingsContent from "@/components/about/MusingsContent"; // Jika Anda menambahkannya
 
 import MobileAboutLayout from "@/components/about/MobileAboutLayout"; // Impor layout mobile
-
-export const metadata: Metadata = {
-  title: "About Icho Ishamashi (The Saga)",
-  description: "Kenali lebih dalam Icho Ishamashi [SleepyHead]: perjalanan, filosofi, keahlian, dan inspirasi di balik karyanya sebagai Digital Craftsman.",
-
-  openGraph: {
-    title: "The Saga of Icho Ishamashi - Digital Craftsman",
-    description: "Jelajahi kisah, filosofi, dan keahlian Icho Ishamashi.",
-    url: "https://ishamashi.com/about",
-  },
-  alternates: {
-    canonical: "/about",
-  },
-};
 
 export type AboutFacet = "saga" | "philosophy" | "skills" | "inspiration" | "musings";
 
@@ -39,8 +26,8 @@ export default function AboutPage() {
       "@type": "Person",
       "@id": "https://ishamashi.com#person", // Gunakan ID jika Anda definisikan di layout, atau URL
     },
-    headline: (metadata.title as string) || "The Saga of Icho Ishamashi",
-    description: metadata.description as string, // Ambil dari metadata halaman
+    headline: "About Icho Ishamashi (The Saga)",
+    description: "Kenali lebih dalam Icho Ishamashi [SleepyHead]: perjalanan, filosofi, keahlian, dan inspirasi di balik karyanya sebagai Digital Craftsman.", // Ambil dari metadata halaman
     url: "https://ishamashi.com/about",
   };
 
