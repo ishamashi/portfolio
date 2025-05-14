@@ -21,8 +21,8 @@ const featuredProjects: Project[] = [
     id: 2,
     title: "Alchecode.com",
     description: "Salah satu proyek yang menjadi fokus untuk diselesaikan di tahun 2025, detail lebih lanjut akan ditambahkan.",
-    imagePlaceholder: "/project/techne.png",
-    imageUrl: "/project/techne.png",
+    imagePlaceholder: "/project/alchecode.png",
+    imageUrl: "/project/alchecode.png",
     techStack: ["React", "Node.js", "JavaScript"],
     liveLink: "https://alchecode.com",
     sourceLink: "https://github.com/ishamashi", // Sesuaikan
